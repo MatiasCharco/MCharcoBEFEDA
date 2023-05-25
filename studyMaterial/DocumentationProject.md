@@ -78,3 +78,35 @@ https://www.atlassian.com/git/tutorials/merging-vs-rebasing
 https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase
 
 
+
+# HU # 58 https://trello.com/c/I8HE3dwr/58-git-branching-strategies-and-flows
+
+What is Gitflow?
+Gitflow is an alternative Git branching model that involves the use of feature branches and multiple primary branches.
+Gitflow can be used for projects that have a scheduled release cycle and for the DevOps best practice of continuous delivery. This workflow doesn’t add any new concepts or commands beyond what’s required for the Feature Branch Workflow.
+
+Gitflow is really just an abstract idea of a Git workflow. This means it dictates what kind of branches to set up and how to merge them together. We will touch on the purposes of the branches below.
+
+Develop and main branches
+Instead of a single main branch, this workflow uses two branches to record the history of the project. The main branch stores the official release history, and the develop branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number.
+The first step is to complement the default main with a develop branch. A simple way to do this is for one developer to create an empty develop branch locally and push it to the server:
+git branch develop
+git push -u origin develop
+This branch will contain the complete history of the project, whereas main will contain an abridged version. Other developers should now clone the central repository and create a tracking branch for develop.
+Feature branches
+Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
+
+
+Creating a feature branch
+Without the git-flow extensions:
+git checkout develop
+git checkout -b feature_branch
+When using the git-flow extension:
+git flow feature start feature_branch
+Continue your work and use Git like you normally would.
+
+Release branches
+
+
+Making release branches is another straightforward branching operation. Like feature branches, release branches are based on the develop branch. A new release branch can be created using the following methods.
+
